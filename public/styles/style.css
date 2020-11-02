@@ -55,6 +55,17 @@ li {
   #synthSketch {
     display: none;
   }
+  .stop {
+    display: none;
+  }
+  #stop {
+    display: inherit;
+    border: none;
+    width: 100%;
+    padding: 5px;
+    background-color: #f36f62;
+    color: #fff;
+  }
 }
 
 @media only screen and (max-width: 780px) {
@@ -113,4 +124,8 @@ li {
   /* margin-top: 3.5rem; */
   width: 100%;
   height: 370px;
+}
+
+.mobileStop {
+  display: none;
 }
