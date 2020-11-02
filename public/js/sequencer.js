@@ -178,8 +178,8 @@ function grabDescription(data) {
 function song(data) {
   //Tone sequencer
   seq = new Tone.Sequence((time, note) => {
-    synth.triggerAttackRelease(note, 0.3, time, 0.1);
-    synthB.triggerAttackRelease(note, 0.9, time, 0.1);
+    synth.triggerAttackRelease(note, 0.3, time, 0.3);
+    synthB.triggerAttackRelease(note, 0.9, time, 0.3);
   }, grabDescription(data));
 
   if (seq.state === "stopped") {
