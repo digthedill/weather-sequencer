@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pts/0.9.5/pts.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/addons/p5.sound.js"></script> -->
+    <!-- <script src="js/p5Sketch.js"></script> -->
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.0.1/Tone.min.js" type="text/javascript"></script>
+
+    <link rel="shortcut icon" href="./imgs/ClipartKey_3270217.png" type="image/x-icon">
+    <link rel="stylesheet" href="./styles/style.css">
+    <title>weather tones</title>
+
+</head>
+
+<body>
+    <div id="container">
+        {{>header}}
+        <hr>
+        <h2>About:</h2>
+        <p>The search field fetches data about the entered location. That data is used to modify the synthesizer and
+            sequencer built in Tone.js. The rate of the sequence is calculated based on what time of the day you are
+            using the app. Currently, the rate (or BPM) is set to increase throughout the day.</p>
+        <p>Once the search event is fired, the Tone.js synthesizer is visulaized through pts.js.</p>
+        <h2>Tech:</h2>
+        <ul>
+            <li>Tone.js</li>
+            <li>pts.js</li>
+            <li>Node/Express</li>
+            <li>Handlebars</li>
+            <li>mapbox API and weatherstack API</li>
+            <li>postman-request</li>
+        </ul>
+        <h2>Inspiration:</h2>
+        <p>This project was inspired from the common weather apps used for students to learn servers and http requests.
+            I thought it'd be interesting to generate some type of synthesizer from the parameters that are recieved
+            from your weather forecast.</p>
+        <p>As for a conceptual inspiration, I have to acknowledge the brilliant, Brian Eno. His work in generative art
+            and music is unparalleled.</p>
+        <br><br><br>
+        <footer class="foot">
+            <br>
+            <p>Created by Dillon Kelley</p>
+        </footer>
+    </div>
+
+
+</body>
+
+</html>

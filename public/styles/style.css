@@ -1,0 +1,122 @@
+body {
+  background-color: #28abb9;
+  font-family: monospace;
+}
+#container {
+  padding: 1rem;
+  background-color: #effad3;
+  margin: 30px auto auto auto;
+  width: 60%;
+}
+table {
+  width: 100%;
+  /* margin-bottom: 100px; */
+  table-layout: fixed;
+}
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+nav li {
+  float: left;
+}
+nav li a {
+  text-decoration: none;
+  color: #000;
+}
+nav li a:hover {
+  color: #ff0000;
+}
+
+footer {
+  text-align: center;
+}
+
+p {
+  font-size: 14px;
+}
+li {
+  font-size: 14px;
+}
+
+@media only screen and (max-width: 768px) {
+  #container {
+    margin: 0 auto;
+    width: 80%;
+  }
+  table {
+    display: block;
+    table-layout: fixed;
+  }
+  .weatherForecast {
+    /* Behave  like a "row" */
+    position: relative;
+    /* margin-top: 2.2rem; */
+  }
+  td {
+    margin-right: 5px;
+  }
+  #title {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1020px) {
+  #container {
+    margin: 0 auto;
+    width: 70%;
+  }
+  table {
+    display: block;
+    table-layout: fixed;
+  }
+  td {
+    margin-right: 5px;
+  }
+  .weatherForecast {
+    /* Behave  like a "row" */
+    position: relative;
+    margin-bottom: 1rem;
+  }
+  #title {
+    display: none;
+  }
+}
+
+#searchBtn,
+#searchInput {
+  display: inline-block;
+  padding: 5px 5px;
+  font-size: 14px;
+}
+#searchInput {
+  border: 1px solid #666;
+}
+#searchBtn {
+  border: 1px solid transparent;
+}
+
+.weatherForecast {
+  max-width: 300px;
+  /* position: absolute; */
+}
+
+.stop {
+  margin-top: 1rem;
+  text-align: center;
+}
+.stop button {
+  width: 50%;
+  border: none;
+  padding: 5px;
+  background-color: #f36f62;
+  color: #fff;
+}
+
+#synthSketch {
+  /* margin-top: 3.5rem; */
+  width: 100%;
+  height: 370px;
+}
