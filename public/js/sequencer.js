@@ -167,7 +167,7 @@ function grabDescription(data) {
 function song(data) {
   //Tone sequencer
   seq = new Tone.Sequence((time, note) => {
-    synth.triggerAttackRelease(note, 0.1, time, 0.6);
+    synth.triggerAttackRelease(note, 0.1, time, 0.4);
     synthB.triggerAttackRelease(note, 0.01, time, 0.3);
   }, grabDescription(data));
 
@@ -208,13 +208,13 @@ function song(data) {
       });
     } else if (data.temp > 35 && data.temp < 55) {
       //chilly
-      synth.connect(pingPong);
+      // synth.connect(pingPong);
       synth.set({
         envelope: {
           attack: 0.7,
-          decay: 0.01,
-          sustain: 0.01,
-          release: 3,
+          decay: 0.5,
+          sustain: 0.1,
+          release: 1,
         },
       });
     } else if (data.temp > 89) {
