@@ -1,5 +1,5 @@
-# weather-sequencer
-weather app that generates a Tone.js sequencer
+# Weather Synthesis
+A simple weather app that generates a Tone.js sequencer
 
 ## About
 
