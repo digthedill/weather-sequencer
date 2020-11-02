@@ -41,7 +41,7 @@ li {
   font-size: 14px;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 500px) {
   #container {
     margin: 0 auto;
     width: 100%;
@@ -52,13 +52,12 @@ li {
   table {
     display: block;
   }
-
-  #title {
+  #synthSketch {
     display: none;
   }
 }
 
-@media only screen and (max-width: 1020px) {
+@media only screen and (max-width: 780px) {
   #container {
     margin: 0 auto;
     width: 70%;
@@ -68,14 +67,14 @@ li {
     table-layout: fixed;
   }
   td {
-    margin-right: 5px;
+    display: block;
   }
   .weatherForecast {
     /* Behave  like a "row" */
     position: relative;
     margin-bottom: 1rem;
   }
-  #title {
+  #synthSketch {
     display: none;
   }
 }

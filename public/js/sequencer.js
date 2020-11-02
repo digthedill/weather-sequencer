@@ -178,7 +178,7 @@ function grabDescription(data) {
 function song(data) {
   //Tone sequencer
   seq = new Tone.Sequence((time, note) => {
-    synth.triggerAttackRelease(note, 0.3, time, 0.3);
+    synth.triggerAttackRelease(note, 0.3, time, 0.2);
     synthB.triggerAttackRelease(note, 0.9, time, 0.3);
   }, grabDescription(data));
 
@@ -192,6 +192,7 @@ function song(data) {
     // **************temperature conditional logic *********************
     if (data.temp > 45 && data.temp < 60) {
       //moderately average
+      synth.chain(dist);
       synth.set({
         oscillator: {
           type: "triangle",
@@ -204,7 +205,7 @@ function song(data) {
         },
       });
     } else if (data.temp > 60 && data.temp < 78) {
-      synth.chain(chorus);
+      synth.chain(chorus, dist);
       //moderately nice
       synth.set({ detune: +1200 });
       synthB.set({ detune: +1200 });
