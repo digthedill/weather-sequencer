@@ -58,6 +58,12 @@ li {
   .stop {
     display: none;
   }
+  #searchBtn {
+    width: 100%;
+  }
+  #searchInput {
+    width: 95%;
+  }
   #stop {
     display: inherit;
     border: none;
