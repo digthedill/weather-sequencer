@@ -53,18 +53,18 @@ const time = new Date();
 const displayTime = time.toLocaleTimeString("en-GB");
 
 //********************************effects****************************************************
-feedbackDelay = new Tone.FeedbackDelay(delaytime(displayTime), 0.5).toMaster();
+feedbackDelay = new Tone.FeedbackDelay(delaytime(displayTime), 0.7).toMaster();
 
 rev = new Tone.Freeverb({
   roomSize: 0.9,
   dampening: 10000,
-  wet: 0.1,
+  wet: 0.2,
 }).toMaster();
 
 dist = new Tone.Distortion().toMaster();
 
 //weak chorus
-chorus = new Tone.Chorus(3, 2.5, 0.5).toMaster();
+chorus = new Tone.Chorus(1, 2.5, 0.5).toMaster();
 
 pingPong = new Tone.PingPongDelay("1m", 0.7).toMaster();
 
@@ -112,7 +112,19 @@ function grabDescription(data) {
   const sequences = {
     torrential: ["f3", "e3", "f3", "d3", "a3", "b3"],
     fog: ["d3", ["a#3", "g3"], "d#2", "a#3", "d3"],
-    clear: ["c4", "f4", "g4", "a#4", ["f4", "c4"], "g4", "e4", "g3"],
+    clear: [
+      "c4",
+      "f4",
+      "c3",
+      "g4",
+      "a#4",
+      "c2",
+      ["f4", "c4"],
+      "g4",
+      "e4",
+      ["f2", "g3"],
+      "g2",
+    ],
     overcast: ["d2", "f3", "a#3", [["d2", "g3"], "c3"], "a3", "f3", "a2"],
     rain: [
       "a#2",
@@ -135,7 +147,16 @@ function grabDescription(data) {
       "d4",
       ["f3", "a#3", "g3"],
     ],
-    snow: ["c#4", "a#3", ["c#4", "a#3", "d#3", "f#3"], "d#3", "f#3"],
+    snow: [
+      "c#4",
+      "a#3",
+      ["c#4", "a#3", "d#3", "f#3"],
+      "d#3",
+      "f#4",
+      "c#3",
+      "g#3",
+      "f#3",
+    ],
     sunny: ["c4", ["g3", "a3"], "f2", ["b3", "c4"], "g3", ["e3", "g3"], "e4"],
     thunderstorm: [["f#3", "e3", "c#3"], "e3", "g#3", "c#4", ["g#2", "b2"]],
     light: [
@@ -167,8 +188,8 @@ function grabDescription(data) {
 function song(data) {
   //Tone sequencer
   seq = new Tone.Sequence((time, note) => {
-    synth.triggerAttackRelease(note, 0.1, time, 0.4);
-    synthB.triggerAttackRelease(note, 0.01, time, 0.3);
+    synth.triggerAttackRelease(note, 0.3, time, 0.3);
+    synthB.triggerAttackRelease(note, 0.9, time, 0.4);
   }, grabDescription(data));
 
   if (seq.state === "stopped") {
@@ -183,14 +204,14 @@ function song(data) {
       //moderately average
       synth.set({
         envelope: {
-          attack: 0.7,
-          decay: 0.1,
+          attack: 0.5,
+          decay: 1,
           sustain: 0.3,
-          release: 4,
+          release: 2,
         },
       });
     } else if (data.temp > 60 && data.temp < 78) {
-      synth.connect(rev);
+      synth.chain(rev);
       //moderately nice
       synth.set({ detune: +1200 });
       synthB.set({ detune: +1200 });
@@ -200,21 +221,20 @@ function song(data) {
           type: "sawtooth",
         },
         envelope: {
-          attack: 0.9,
-          decay: 0.5,
+          attack: 0.06,
+          decay: 0.3,
           sustain: 0.1,
           release: 2,
         },
       });
     } else if (data.temp > 35 && data.temp < 55) {
       //chilly
-      // synth.connect(pingPong);
       synth.set({
         envelope: {
-          attack: 0.7,
-          decay: 0.5,
-          sustain: 0.1,
-          release: 1,
+          attack: 0.4,
+          decay: 0.3,
+          sustain: 0.2,
+          release: 5,
         },
       });
     } else if (data.temp > 89) {
@@ -235,19 +255,13 @@ function song(data) {
       synth.set({
         envelope: {
           attack: 0.7,
-          decay: 0.5,
+          decay: 0.1,
           sustain: 0.3,
           release: 6,
         },
       });
     } ///  need to fix the else statement to recieve else logic
     seq.start();
-  }
-
-  //never hitting these functions
-  if (Tone.context.state === "running") {
-    console.log("else statement achieved");
-    Tone.Transport.clear();
   }
 }
 
@@ -267,9 +281,9 @@ function timeToBPM(time) {
 
 function delaytime(time) {
   const hour = parseInt(time.slice(0, 2));
-  const delayRange = 1 - 0.5; //min and max
+  const delayRange = 0.9 - 0.1; //min and max
   const timeRange = 23 - 0; //reverse min and max
-  const delay = ((hour - 0) * delayRange) / timeRange + 0.4;
+  const delay = ((hour - 0) * delayRange) / timeRange + 0.1;
   return delay;
 }
 
