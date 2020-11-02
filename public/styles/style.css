@@ -44,20 +44,15 @@ li {
 @media only screen and (max-width: 768px) {
   #container {
     margin: 0 auto;
-    width: 80%;
+    width: 100%;
+  }
+  td {
+    display: block;
   }
   table {
     display: block;
-    table-layout: fixed;
   }
-  .weatherForecast {
-    /* Behave  like a "row" */
-    position: relative;
-    /* margin-top: 2.2rem; */
-  }
-  td {
-    margin-right: 5px;
-  }
+
   #title {
     display: none;
   }
