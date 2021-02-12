@@ -24,6 +24,10 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.get("/synth", (req, res) => {
+  res.render("synth");
+});
+
 app.get("/about", (req, res) => {
   res.render("about");
 });

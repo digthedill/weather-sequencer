@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pts/0.9.5/pts.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.0.1/Tone.min.js" type="text/javascript"></script>
+    <link rel="shortcut icon" href="./imgs/ClipartKey_3270217.png" type="image/x-icon">
+    <link rel="stylesheet" href="./styles/style.css">
+    <title>weather tones</title>
+
+</head>
+
+<body>
+    <div id="container">
+        {{>header}}
+        <hr>
+        <h3>How to Use</h3>
+        <p>Search for a location and listen to the results. Your forecast's description, temperature, and time of search
+            will affect the sounds you hear.</p>
+
+        <div class="info-container">
+            <div class="form-container">
+                <form>
+                    <input id='searchInput' type="text" placeholder="Choose a location">
+                    <button id="searchBtn">Search</button>
+                </form>
+                <button id="stop" class="mobileStop">Stop</button>
+            </div>
+            <div class="weatherForecast">
+                <p id="title"></p>
+                <strong>
+                    <h3 id="des"></h3>
+                </strong>
+                <strong>
+                    <h3 id="temp"></h3>
+                </strong>
+            </div>
+        </div>
+
+
+        <div id="synthSketch"></div>
+        <div class="stop">
+            <button id="stop">Stop</button>
+        </div>
+        <footer class="foot">
+            <br>
+            <p>Created by Dillon Kelley</p>
+        </footer>
+    </div>
+
+    <script type="module" src="./js/sequencer.js"></script>
+    <script type="module" src="./js/sketch.js"></script>
+</body>
+
+</html>

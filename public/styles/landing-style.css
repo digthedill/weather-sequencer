@@ -1,0 +1,89 @@
+html {
+  background-color: #e4e9fd;
+  background-image: -webkit-linear-gradient(65deg, #28abb9 50%, #effad3 50%);
+}
+
+main {
+  margin: 0 auto 0 auto;
+  width: 100%;
+  max-width: min-content;
+  height: 100vh;
+
+  /* For centering content */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.description {
+  margin-top: 1.5rem;
+}
+.title h1 {
+  font-size: 3rem;
+  font-family: "Righteous", cursive;
+}
+.title a {
+  text-decoration: none;
+  color: black;
+  background: white;
+  padding: 1.2rem;
+  margin: 0 auto;
+  /* width: 50%; */
+}
+a:hover {
+  background: rgb(0, 0, 0);
+  color: white;
+}
+
+.fade {
+  animation: fadeIn ease 5s;
+  -webkit-animation: fadeIn ease 5s;
+  -moz-animation: fadeIn ease 5s;
+  -o-animation: fadeIn ease 5s;
+  -ms-animation: fadeIn ease 5s;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

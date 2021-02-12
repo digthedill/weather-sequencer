@@ -8,11 +8,13 @@ body {
   margin: 30px auto auto auto;
   width: 60%;
 }
-table {
-  width: 100%;
-  /* margin-bottom: 100px; */
-  table-layout: fixed;
+
+.info-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
 nav ul {
   list-style-type: none;
   margin: 0;
@@ -46,12 +48,7 @@ li {
     margin: 0 auto;
     width: 100%;
   }
-  td {
-    display: block;
-  }
-  table {
-    display: block;
-  }
+
   #synthSketch {
     display: none;
   }
