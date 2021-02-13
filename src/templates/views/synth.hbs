@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pts/0.9.5/pts.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.0.1/Tone.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pts/0.9.6/pts.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.9/Tone.js" type="text/javascript"></script>
     <link rel="shortcut icon" href="./imgs/ClipartKey_3270217.png" type="image/x-icon">
     <link rel="stylesheet" href="./styles/style.css">
     <title>weather tones</title>
@@ -23,8 +23,9 @@
         <div class="info-container">
             <div class="form-container">
                 <form>
-                    <input id='searchInput' type="text" placeholder="Choose a location">
+                    <input id='searchInput' type="text" placeholder="Choose a location" required>
                     <button id="searchBtn">Search</button>
+                    <button id="stopBtn">Stop</button>
                 </form>
                 <button id="stop" class="mobileStop">Stop</button>
             </div>
@@ -41,9 +42,7 @@
 
 
         <div id="synthSketch"></div>
-        <div class="stop">
-            <button id="stop">Stop</button>
-        </div>
+
         <footer class="foot">
             <br>
             <p>Created by Dillon Kelley</p>

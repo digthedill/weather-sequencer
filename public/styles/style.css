@@ -7,8 +7,8 @@ body {
   background-color: #effad3;
   margin: 30px auto auto auto;
   width: 60%;
+  min-height: 80vh;
 }
-
 .info-container {
   display: flex;
   justify-content: space-between;
@@ -20,6 +20,8 @@ nav ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  display: flex;
+  justify-content: space-between;
 }
 nav li {
   float: left;

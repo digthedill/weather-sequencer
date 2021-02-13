@@ -1,12 +1,17 @@
 html {
   background-color: #e4e9fd;
-  background-image: -webkit-linear-gradient(65deg, #28abb9 50%, #effad3 50%);
+  background-image: -webkit-linear-gradient(75deg, #28abb9 50%, #effad3 50%);
+  min-height: 100vh;
+}
+p,
+a {
+  font-family: monospace;
 }
 
 main {
   margin: 0 auto 0 auto;
   width: 100%;
-  max-width: min-content;
+  max-width: 400px;
   height: 100vh;
 
   /* For centering content */
@@ -19,21 +24,34 @@ main {
 .description {
   margin-top: 1.5rem;
 }
+.title {
+  text-align: center;
+}
 .title h1 {
   font-size: 3rem;
   font-family: "Righteous", cursive;
+  text-align: left;
 }
 .title a {
   text-decoration: none;
   color: black;
   background: white;
   padding: 1.2rem;
-  margin: 0 auto;
-  /* width: 50%; */
+  margin: 10px auto;
+  width: 50%;
 }
 a:hover {
   background: rgb(0, 0, 0);
   color: white;
+}
+
+a.plain-link {
+  text-decoration: none;
+  color: white;
+}
+a.plain-link:hover {
+  color: white;
+  background: black;
 }
 
 .fade {

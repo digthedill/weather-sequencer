@@ -1,24 +1,27 @@
 let synth;
 let seq;
 let rev, dist, feedbackDelay, chorus, pingPong, bitCrush;
-
 const transport = Tone.Transport;
 
-const synthB = new Tone.PolySynth().toMaster();
+const synthB = new Tone.PolySynth().toDestination();
 // set the attributes across all the voices using 'set'
 synthB.set({ detune: -1200 });
 
 const weatherForm = document.querySelector("form");
 const search = document.querySelector("input");
 let searchBtn = document.querySelector("#searchBtn");
-const stopBtn = document.querySelector("#stop");
+const stopBtn = document.querySelector("#stopBtn");
 
 const title = document.querySelector("#title");
 const temp = document.querySelector("#temp");
 const des = document.querySelector("#des");
-const vol = document.querySelector("#volume");
+// const vol = document.querySelector("#volume");
 
 // ************Create a toggle between search and stop **********
+
+//idea to add a kick toggle if the user wants a beat
+
+stopBtn.style.visibility = "hidden";
 
 const getData = () => {
   const location = search.value;
@@ -36,18 +39,23 @@ const getData = () => {
   });
 };
 
-weatherForm.addEventListener("submit", (e) => {
+weatherForm.addEventListener("submit", async (e) => {
   e.preventDefault();
+  await Tone.start();
+  // searchBtn.disabled = "true";
   title.textContent = "loading. . .";
   temp.textContent = "";
   des.textContent = "";
   getData();
 });
 
-stopBtn.addEventListener("click", () => {
-  seq.stop();
-  searchBtn.disabled = false;
-  searchBtn.focus();
+stopBtn.addEventListener("mousedown", (e) => {
+  e.preventDefault();
+  stopBtn.style.visibility = "hidden";
+  searchBtn.style.visibility = "visible";
+  transport.stop();
+  transport.clear();
+  // transport.dispose();
 });
 
 const time = new Date();
@@ -55,24 +63,24 @@ const displayTime = time.toLocaleTimeString("en-GB");
 
 //********************************effects****************************************************
 feedbackDelay = new Tone.FeedbackDelay({
-  delayTime: delayRangeFunction(displayTime),
+  delayTime: 0.5,
   maxDelay: 0.5,
   feedback: 0.4,
-}).toMaster();
+});
 
 rev = new Tone.Freeverb({
   roomSize: 0.8,
-  dampening: 10000,
+  dampening: 400,
   wet: 0.2,
-}).toMaster();
+});
 
-dist = new Tone.Distortion(0.1).toMaster();
+dist = new Tone.Distortion(0.1);
 //weak chorus
-chorus = new Tone.Chorus(1, 2.5, 0.5).toMaster();
+chorus = new Tone.Chorus(1, 2.5, 0.5);
 
-pingPong = new Tone.PingPongDelay("1m", 0.7).toMaster();
+pingPong = new Tone.PingPongDelay("1m", 0.7);
 
-bitCrush = new Tone.BitCrusher(10).toMaster();
+bitCrush = new Tone.BitCrusher(3);
 
 //****************************************************************************************** */
 //*******************synthesizer initialization/defaults (Tone.js) *************************
@@ -86,7 +94,7 @@ synth = new Tone.Synth({
     sustain: 0.1,
     release: 2,
   },
-}).toMaster();
+}).toDestination();
 synth.connect(feedbackDelay);
 synth.chain(rev);
 Tone.Transport.start().bpm.value = timeToBPM(displayTime);
@@ -182,98 +190,94 @@ function song(data) {
     synthB.triggerAttackRelease(note, 0.9, time, 0.3);
   }, grabDescription(data));
 
-  if (seq.state === "stopped") {
-    if (Tone.context.state !== "running") {
-      Tone.context.resume();
-    }
-    searchBtn.disabled = true;
-    stopBtn.focus();
+  transport.start();
+  searchBtn.style.visibility = "collapse";
+  stopBtn.style.visibility = "visible";
 
-    // **************temperature conditional logic *********************
-    if (data.temp > 45 && data.temp < 60) {
-      //moderately average
-      synth.chain(dist);
-      synth.set({
-        oscillator: {
-          type: "triangle",
-        },
-        envelope: {
-          attack: 0.8,
-          decay: 1,
-          sustain: 0.3,
-          release: 2,
-        },
-      });
-    } else if (data.temp > 60 && data.temp < 78) {
-      synth.chain(chorus, dist);
-      //moderately nice
-      synth.set({ detune: +1200 });
-      synthB.set({ detune: +1200 });
+  seq.start();
 
-      synth.set({
-        oscillator: {
-          type: "triangle",
-        },
-        envelope: {
-          attack: 0.7,
-          decay: 0.3,
-          sustain: 0.1,
-          release: 1,
-        },
-      });
-    } else if (data.temp > 35 && data.temp < 55) {
-      //chilly
-      synth.set({
-        oscillator: {
-          type: "square",
-        },
-        envelope: {
-          attack: 0.4,
-          decay: 0.3,
-          sustain: 0.2,
-          release: 5,
-        },
-      });
-    } else if (data.temp > 89) {
-      ///////REALLLYYYY HOT
-      synth.chain(rev, shift, pingPong);
-      synth.set({
-        oscillator: {
-          type: "sawtooth",
-        },
-        envelope: {
-          attack: 0.005,
-          decay: 0.9,
-          sustain: 0.3,
-          release: 5,
-        },
-      });
-    } else if (data.temp < 28) {
-      /////////COLD AS FUCK
-      synth.chain(bitCrush, pingPong);
-      synth.connect(pingPong);
-      synth.set({
-        oscillator: {
-          type: "sawtooth",
-        },
-        envelope: {
-          attack: 0.7,
-          decay: 0.1,
-          sustain: 0.3,
-          release: 6,
-        },
-      });
-    } ///  need to fix the else statement to recieve else logic
-    seq.start();
+  // **************temperature conditional logic *********************
+  if (data.temp > 45 && data.temp < 60) {
+    //moderately average
+    synth.chain(dist);
+    synth.set({
+      oscillator: {
+        type: "triangle",
+      },
+      envelope: {
+        attack: 0.8,
+        decay: 1,
+        sustain: 0.3,
+        release: 2,
+      },
+    });
+  } else if (data.temp > 60 && data.temp < 78) {
+    synth.chain(chorus, dist);
+    //moderately nice
+    synth.set({ detune: +1200 });
+    synthB.set({ detune: +1200 });
+
+    synth.set({
+      oscillator: {
+        type: "triangle",
+      },
+      envelope: {
+        attack: 0.7,
+        decay: 0.3,
+        sustain: 0.1,
+        release: 1,
+      },
+    });
+  } else if (data.temp > 35 && data.temp < 55) {
+    //chilly
+    synth.set({
+      oscillator: {
+        type: "square",
+      },
+      envelope: {
+        attack: 0.4,
+        decay: 0.3,
+        sustain: 0.2,
+        release: 5,
+      },
+    });
+  } else if (data.temp > 89) {
+    ///////REALLLYYYY HOT
+    synth.chain(rev, shift, pingPong);
+    synth.set({
+      oscillator: {
+        type: "sawtooth",
+      },
+      envelope: {
+        attack: 0.005,
+        decay: 0.9,
+        sustain: 0.3,
+        release: 5,
+      },
+    });
+  } else if (data.temp < 28) {
+    /////////COLD AS FUCK
+    synth.chain(bitCrush, pingPong);
+    synth.connect(pingPong);
+    synth.set({
+      oscillator: {
+        type: "sawtooth",
+      },
+      envelope: {
+        attack: 0.7,
+        decay: 0.1,
+        sustain: 0.3,
+        release: 6,
+      },
+    });
   }
 }
-
 //Range Functions
 
 function timeToBPM(time) {
   const hour = parseInt(time.slice(0, 2));
-  const bpmMin = 50;
-  const bpmMax = 80;
+  const bpmMin = 30;
+  const bpmMax = 50;
   const timeRange = 23 - 0;
   const bpmRange = bpmMax - bpmMin;
 
@@ -282,15 +286,13 @@ function timeToBPM(time) {
   return bpm;
 }
 
-function delayRangeFunction(time) {
-  const hour = parseInt(time.slice(0, 2));
-  const delayRange = 1 - 0.1; //min and max
-  const timeRange = 23 - 0; //reverse min and max
-  const delay = (((hour - 0) * delayRange) / timeRange + 0.1).toFixed(2);
-  console.log("delay time in secs:", delay);
-  return delay;
-}
-
-//PTS.js practice
+// function delayRangeFunction(time) {
+//   const hour = parseInt(time.slice(0, 2));
+//   const delayRange = 1 - 0.1; //min and max
+//   const timeRange = 23 - 0; //reverse min and max
+//   const delay = (((hour - 0) * delayRange) / timeRange + 0.1).toFixed(2);
+//   console.log("delay time in secs:", delay);
+//   return delay;
+// }
 
 export { synth, transport };
