@@ -52,10 +52,14 @@ weatherForm.addEventListener("submit", async (e) => {
 stopBtn.addEventListener("mousedown", (e) => {
   e.preventDefault();
   stopBtn.style.visibility = "hidden";
-  searchBtn.style.visibility = "visible";
+  searchBtn.style.display = "inline";
   transport.stop();
   transport.clear();
   transport.dispose();
+
+  title.textContent = "";
+  temp.textContent = "";
+  des.textContent = "";
 });
 
 const time = new Date();
@@ -191,7 +195,7 @@ function song(data) {
   }, grabDescription(data));
 
   transport.start();
-  searchBtn.style.visibility = "collapse";
+  searchBtn.style.display = "none";
   stopBtn.style.visibility = "visible";
 
   seq.start();
