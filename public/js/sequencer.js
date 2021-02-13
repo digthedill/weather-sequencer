@@ -55,7 +55,7 @@ stopBtn.addEventListener("mousedown", (e) => {
   searchBtn.style.display = "inline";
   transport.stop();
   transport.clear();
-  transport.dispose();
+  transport.cancel();
 
   title.textContent = "";
   temp.textContent = "";
