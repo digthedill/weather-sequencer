@@ -1,3 +1,9 @@
+/* fix the footer */
+
+/* consider a more traditional header with links */
+
+/* go through and clean up the mobile design */
+
 body {
   background-color: #28abb9;
   font-family: monospace;
@@ -15,6 +21,10 @@ body {
   align-items: center;
 }
 
+nav {
+  width: 60%;
+  margin: auto auto;
+}
 nav ul {
   list-style-type: none;
   margin: 0;

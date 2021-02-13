@@ -55,7 +55,7 @@ stopBtn.addEventListener("mousedown", (e) => {
   searchBtn.style.visibility = "visible";
   transport.stop();
   transport.clear();
-  // transport.dispose();
+  transport.dispose();
 });
 
 const time = new Date();

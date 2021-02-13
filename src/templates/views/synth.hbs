@@ -13,9 +13,10 @@
 </head>
 
 <body>
+    {{>header}}
+
     <div id="container">
-        {{>header}}
-        <hr>
+
         <h3>How to Use</h3>
         <p>Search for a location and listen to the results. Your forecast's description, temperature, and time of search
             will affect the sounds you hear.</p>
@@ -43,11 +44,9 @@
 
         <div id="synthSketch"></div>
 
-        <footer class="foot">
-            <br>
-            <p>Created by Dillon Kelley</p>
-        </footer>
     </div>
+    {{>footer}}
+
 
     <script type="module" src="./js/sequencer.js"></script>
     <script type="module" src="./js/sketch.js"></script>

@@ -19,8 +19,11 @@
 </head>
 
 <body>
+    {{>header}}
+
+
     <div id="container">
-        {{>header}}
+
         <hr>
         <h2>About:</h2>
         <p>The search field fetches data about the entered location. That data is used to modify the synthesizer and
@@ -44,13 +47,9 @@
         <p>As for a conceptual inspiration, I have to acknowledge the brilliant, Brian Eno. His work in generative art
             and music is unparalleled.</p>
         <br><br><br>
-        <footer class="foot">
-            <br>
-            <p>Created by Dillon Kelley</p>
-        </footer>
     </div>
 
-
+    {{>footer}}
 </body>
 
 </html>
