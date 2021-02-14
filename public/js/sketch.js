@@ -16,7 +16,7 @@ const form = space.getForm();
 
 weatherSubmit.addEventListener("submit", (e) => {
   e.preventDefault();
-
+  console.log("hello");
   space.add({
     animate: (time, ftime) => {
       let fd = sound.freqDomainTo([space.size.y, space.size.x / 2]);
@@ -30,12 +30,12 @@ weatherSubmit.addEventListener("submit", (e) => {
         // draw spikes
         form.fillOnly(color).polygon([
           [space.center.x, f.x],
-          [space.center.x, f.x + h],
+          [space.center.x, f.x + hz],
           [-f.y + space.center.x, f.x + h / 2],
         ]);
         form.fillOnly(color).polygon([
           [space.center.x, f.x],
-          [space.center.x, f.x + h],
+          [space.center.x, f.x + hz],
           [f.y + space.center.x, f.x + h / 2],
         ]);
 
@@ -43,14 +43,14 @@ weatherSubmit.addEventListener("submit", (e) => {
         form
           .fillOnly(color)
           .point(
-            [space.center.x - f.y, f.x + h / 2],
+            [space.center.x - f.y, f.x + hz / 2],
             h / 2 + (2 * f.y) / space.size.x,
             "circle"
           );
         form
           .fillOnly(color)
           .point(
-            [space.center.x + f.y, f.x + h / 2],
+            [space.center.x + f.y, f.x + hz / 2],
             h / 2 + (2 * f.y) / space.size.x,
             "circle"
           );

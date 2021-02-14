@@ -1,9 +1,13 @@
 let synth;
 let seq;
 let rev, dist, feedbackDelay, chorus, pingPong, bitCrush;
-const transport = Tone.Transport;
 
+const transport = Tone.Transport;
+const fft = new Tone.FFT();
+const audioCtx = new Tone.Context();
+const audioAnalyser = new Tone.Analyser();
 const synthB = new Tone.PolySynth().toDestination();
+
 // set the attributes across all the voices using 'set'
 synthB.set({ detune: -1200 });
 
@@ -299,4 +303,4 @@ function timeToBPM(time) {
 //   return delay;
 // }
 
-export { synth, transport };
+export { synth, transport, fft, audioAnalyser, audioCtx };
