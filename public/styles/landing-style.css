@@ -6,6 +6,7 @@ html {
 p,
 a {
   font-family: monospace;
+  line-height: 150%;
 }
 
 main {

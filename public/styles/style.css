@@ -72,9 +72,9 @@ li {
     width: 100%;
   }
 
-  /* #synthSketch {
-    display: none;
-  } */
+  #synthSketch {
+    min-height: 70vh;
+  }
 }
 
 @media only screen and (max-width: 780px) {
@@ -128,6 +128,7 @@ li {
   /* margin-top: 3.5rem; */
   width: 100%;
   height: 370px;
+  margin-top: 2rem;
 }
 
 .mobileStop {

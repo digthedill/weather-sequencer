@@ -43,15 +43,15 @@ weatherSubmit.addEventListener("submit", (e) => {
         form
           .fillOnly(color)
           .point(
-            [space.center.x - f.y, f.x + hz / 2],
-            h / 2 + (2 * f.y) / space.size.x,
+            [space.center.x - f.y, f.x + hz / 4],
+            1000 / 2 + (2 * f.y) / space.size.x,
             "circle"
           );
         form
           .fillOnly(color)
           .point(
-            [space.center.x + f.y, f.x + hz / 2],
-            h / 2 + (2 * f.y) / space.size.x,
+            [space.center.x + f.y, f.x + hz / 4],
+            1000 / 2 + (2 * f.y) / space.size.x,
             "circle"
           );
       }
